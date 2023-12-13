@@ -70,11 +70,11 @@ export default function MainPage() {
           <section className="testimonials-section">
             <h2 className="testimonials-title">What people are saying</h2>
             <div className="testimonial-card">
-              <p className="testimonial-text">"EXTracker has helped me save so much money! I love the analytics feature."</p>
+              <p className="testimonial-text">&quot;EXTracker has helped me save so much money! I love the analytics feature.&quot;</p>
               <span className="testimonial-author">- Jane Doe</span>
             </div>
             <div className="testimonial-card">
-              <p className="testimonial-text">"This app is so easy to use! I highly recommend it to anyone who wants to get a handle on their finances."</p>
+              <p className="testimonial-text">&quot;This app is so easy to use! I highly recommend it to anyone who wants to get a handle on their finances.&quot;</p>
               <span className="testimonial-author">- John Smith</span>
             </div>
           </section>

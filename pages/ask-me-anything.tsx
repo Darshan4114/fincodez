@@ -9,7 +9,7 @@ interface Message {
 
 export default function GoalTrackerPage() {
     
-    const API_KEY = "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"
+    const API_KEY = process.env.OPENAI_KEY
     const [messages, setMessages] = useState<Message[]>([
         {
           message: "Hello, I'm FinBot! Ask me anything!",
@@ -102,17 +102,17 @@ export default function GoalTrackerPage() {
           </div>
         ))}
       </div>
-      <div className="chat-input">
+      <form className="chat-input">
         <input
           className="message-input"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
           placeholder="Enter your message..."
         />
-        <button onClick={() => handleSendRequest(inputMessage)} className="send-button">
+        <button type='submit' onClick={() => handleSendRequest(inputMessage)} className="send-button">
           Send
         </button>
-      </div>
+      </form>
       {isTyping && <Loader />}
     </div>
             </main>
