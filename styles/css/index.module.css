@@ -1,0 +1,40 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  padding-top: 5em;
+}
+
+.container .addBtn {
+  border: none;
+  background: none;
+  position: fixed;
+  bottom: 4.5em;
+  right: 2em;
+  cursor: pointer;
+}
+
+.styledList {
+  display: -ms-grid;
+  display: grid;
+  margin: 1rem auto;
+  padding-bottom: 2em;
+}
+
+@media screen and (min-width: 800px) {
+  .styledList {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    max-width: 50rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .styledList {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    max-width: 80rem;
+  }
+}
+/*# sourceMappingURL=index.module.css.map */

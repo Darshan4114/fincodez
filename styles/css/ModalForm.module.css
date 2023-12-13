@@ -1,0 +1,94 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+.container .modal {
+  /* width: 25rem; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+  max-width: calc(100vw - 2rem);
+}
+
+.container .formClass {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: var(--theme-white);
+  border-radius: 0.5em;
+  margin: 2em auto;
+  padding: 1em 1em 4em;
+  z-index: 50;
+  /* width: 22rem; */
+  max-width: calc(100vw - 2rem);
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.container .formClass h1 {
+  font-size: 1.5rem;
+}
+
+.container .formClass .actionBtnGrp {
+  background: var(--theme-white);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  z-index: 40;
+  border-radius: 0 0 0.5em 0.5em;
+  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  -webkit-clip-path: inset(-15px 0px 0px 0px);
+          clip-path: inset(-15px 0px 0px 0px);
+}
+
+.container .formClass .actionBtnGrp > button {
+  padding: 0.5em 0;
+  margin: 0 0.25em;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.container .formClass .actionBtnGrp .submit {
+  background: var(--theme-primary);
+  color: var(--theme-white);
+}
+
+.container .formClass .actionBtnGrp .cancel {
+  background: var(--theme-white);
+  color: var(--text-primary);
+  border: 2px solid var(--theme-primary);
+}
+
+.container .formClass .error {
+  color: var(--red-matte);
+  font-size: 0.9rem;
+}
+/*# sourceMappingURL=ModalForm.module.css.map */

@@ -1,0 +1,14 @@
+.logo {
+  margin: 0.5em auto 0.5em auto;
+  font-family: "gretoon", sans-serif;
+  color: var(--theme-secondary);
+  font-size: 2rem;
+  width: 8.5rem;
+}
+
+@media screen and (min-width: 700px) {
+  .logo {
+    margin: 0.5em 0.35em 0.5em 0.35em;
+  }
+}
+/*# sourceMappingURL=Logo.module.css.map */
