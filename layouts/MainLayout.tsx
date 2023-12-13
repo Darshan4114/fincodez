@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 export default function MainLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="h-screen bg-neutral-700 text-white flex w-full">
-            <div className='bg-neutral-900 w-72 p-8 flex flex-col justify-between'>
+            <div className='bg-neutral-900 w-72 p-8 flex flex-col justify-between border-r border-neutral-500'>
                 <div className="">
                     <Logo />
                     <p className="text-gray-500">your finance assistant</p>

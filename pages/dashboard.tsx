@@ -109,7 +109,7 @@ export default function Home({ userId, userName, transactionsList }: { userId: s
         </ul>
       </div>
       <main className='p-8 grow'>
-        <p>Good morning!</p>
+        <p className='text-xl'>Good morning!</p>
         <p className="text-6xl mb-10">{userName}</p>
         <div className="cards flex gap-4">
           <div className="card border border-neutral-500 bg-neutral-800 rounded-xl p-4 px-8">
