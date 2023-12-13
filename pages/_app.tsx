@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.on("routeChangeComplete", () => nProgress.done());
       router.events.on("routeChangeError", () => nProgress.done());
     })
-  }, []);
+  }, [router.events]);
 
   return (
     <>
@@ -42,9 +42,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
       </Head>
       <AuthProvider>
         <Component {...pageProps} tabValue={tabValue} />

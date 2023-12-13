@@ -36,7 +36,7 @@ const PieChart = ({ data, width, height }) => {
 
   useEffect(() => {
     animate();
-  }, []);
+  }, [animate]);
 
   return (
     <div ref={containerRef} style={{ width, height }}>
