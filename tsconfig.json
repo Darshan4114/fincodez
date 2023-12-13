@@ -17,6 +17,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/login.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/login.js", "firebase/crud/cMonitorChanges.js", "components/Pie.jsx"],
   "exclude": ["node_modules"]
 }

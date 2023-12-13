@@ -3,11 +3,7 @@ import { useEffect } from "react";
 
 export default function MainPage() {
     const router = useRouter();
-    useEffect(() => {
-
-
-        // router.push('/dashboard');
-    }, [])
+   
 
     return (
         <div className="landing-page">

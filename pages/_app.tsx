@@ -24,11 +24,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     setTabValue(router.asPath);
   }, [router.asPath]);
-  useEffect(()=>{(async () => {
-    router.events.on("routeChangeStart", () => nProgress.start());
-    router.events.on("routeChangeComplete", () => nProgress.done());
-    router.events.on("routeChangeError", () => nProgress.done());
-  })}, []);
+  useEffect(() => {
+    (async () => {
+      router.events.on("routeChangeStart", () => nProgress.start());
+      router.events.on("routeChangeComplete", () => nProgress.done());
+      router.events.on("routeChangeError", () => nProgress.done());
+    })
+  }, [router.events]);
 
   return (
     <>
@@ -42,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <AuthProvider>
-          <Component {...pageProps} tabValue={tabValue} />
+        <Component {...pageProps} tabValue={tabValue} />
         <ToastContainer
           position="bottom-center"
           autoClose={1000}
