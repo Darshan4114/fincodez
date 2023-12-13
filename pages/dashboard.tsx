@@ -10,13 +10,14 @@ import { getAuth, signOut } from "firebase/auth";
 import app from "../firebase/clientApp";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import cGetDocs from '@/firebase/crud-lite/cGetDocs';
+import cGetDocs from '@/firebase/crud/cGetDocs';
 import cMonitorChanges from "@/firebase/crud/cMonitorChanges";
 import checkAuth from '@/utils/checkAuth';
 import { GetServerSideProps } from 'next';
 import getListFromSnapshot from "@/utils/getListFromSnapshot";
 import { Chart } from "react-google-charts";
 import PieChart from '@/components/Pie';
+import Spinner from '@/components/Spinner';
 
 export const data = [
   ["Task", "Hours per Day"],
@@ -38,7 +39,7 @@ export const options = {
     bold: true,
   },
   legend: { textStyle: { color: 'white' } },
-  // colors: []
+  colors: ['#22c55e', '#56ce75', '#78d78c', '#96dfa2', '#b1e8b9']
 };
 
 const auth = getAuth(app);
@@ -48,44 +49,41 @@ const inter = Inter({ subsets: ['latin'] });
 export const getServerSideProps = async (ctx: GetServerSideProps) => {
   //@ts-ignore
   let res = await checkAuth({ ctx });
-  return res;
+  return { ...res, props: { ...res.props } };
 };
 
 
-export default function Home() {
+export default function Home({ userId, userName, transactionsList }: { userId: string, userName: string, transactionsList: any }) {
   const router = useRouter();
-  const { user } = useContext(AuthContext);
-  const [transactions, setTransactions] = useState<any[]>([]);
+  const [transactions, setTransactions] = useState<any[]>(transactionsList);
+  const [expense, setExpense] = useState(0);
+  const [income, setIncome] = useState(0);
+  const [pl, setPl] = useState(0);
 
   useEffect(() => {
-    (async () => {
-      if (!user?.uid) {
-        console.log('user not found, ret');
-        return;
-      };
-      const transactions = await cGetDocs({
-        collectionPath: ['transactions'],
-        conditions: [{ field: "uid", operator: "==", value: user?.uid }],
-      })
-      setTransactions(transactions);
-    })()
-  }, [user?.uid])
+    if (!userId) {
+      console.log('user not found, ret');
+      return;
+    };
+    cGetDocs({
+      collectionPath: ['transactions'],
+      conditions: [{ field: "user", operator: "==", value: userId }],
+    }).then((transactions) => {
+      const totalIncome = transactions.reduce((acc, curr) => {
+        // @ts-ignore
+        return curr.transactionType === 'INCOME' ? acc + curr.amount : acc;
+      }, 0);
+      const totalExpense = transactions.reduce((acc, curr) => {
+        // @ts-ignore
+        return curr.transactionType === 'EXPENSE' ? acc + curr.amount : acc;
+      }, 0);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     //Monitoring changes in firestore
-  //     // setLoading(true);
-  //     // @ts-ignore
-  //     const transactions = await cMonitorChanges({
-  //       collectionPath: ["transactions"],
-  //       callback: (snapshot: any) => {
-  //         let transactions = getListFromSnapshot(snapshot);
-  //         setTransactions(transactions);
-  //       },
-  //     });
-  //     // setLoading(false);
-  //   })()
-  // }, []);
+      setIncome(totalIncome);
+      setExpense(totalExpense);
+      setPl(totalIncome - totalExpense);
+      setTransactions(transactions);
+    })
+  }, [userId])
 
   function logout() {
     signOut(auth)
@@ -112,18 +110,18 @@ export default function Home() {
       </div>
       <main className='p-8 grow'>
         <p>Good morning!</p>
-        <p className="text-6xl mb-10">{user?.displayName}</p>
+        <p className="text-6xl mb-10">{userName}</p>
         <div className="cards flex gap-4">
           <div className="card border border-neutral-500 bg-neutral-800 rounded-xl p-4 px-8">
-            <p className="text-white font-bold text-5xl mb-2">22,000</p>
-            <p className="text-neutral-300 ">Expenses</p>
-          </div>
-          <div className="card border border-neutral-500 bg-neutral-800 rounded-xl p-4 px-8">
-            <p className="text-white font-bold text-5xl mb-2">10,000</p>
+            <p className="text-white font-bold text-5xl mb-2">{income}</p>
             <p className="text-neutral-300 ">Income</p>
           </div>
           <div className="card border border-neutral-500 bg-neutral-800 rounded-xl p-4 px-8">
-            <p className="text-white font-bold text-5xl mb-2">11,000</p>
+            <p className="text-white font-bold text-5xl mb-2">{expense}</p>
+            <p className="text-neutral-300 ">Expenses</p>
+          </div>
+          <div className="card border border-neutral-500 bg-neutral-800 rounded-xl p-4 px-8">
+            <p className="text-white font-bold text-5xl mb-2">{pl}</p>
             <p className="text-neutral-300 ">P&L</p>
           </div>
         </div>
@@ -137,32 +135,6 @@ export default function Home() {
             className='rounded-xl overflow-hidden'
             style={{ fill: 'red' }}
           />
-          {/* <PieChart
-            data={[
-              {
-                value: 45,
-                color: "#ff9999"  // Light Pink
-              },
-              {
-                value: 20,
-                color: "#66b2ff"  // Sky Blue
-              },
-              {
-                value: 18,
-                color: "#99ff99"  // Light Green
-              },
-              {
-                value: 12,
-                color: "#ffcc99"  // Peach
-              },
-              {
-                value: 5,
-                color: "#c2c2f0"  // Lavender
-              }
-            ]}
-            width={500}
-            height={500}
-          /> */}
         </div>
       </main>
       <div className='bg-neutral-700 w-72flex flex-col border-l border-neutral-500'>
@@ -180,16 +152,20 @@ export default function Home() {
             </li>
           </Link>
         </div>
-        <div className="transactions p-4 grow overflow-y-scroll">
+        <div className="transactions p-4 grow">
           <p className='uppercase mb-4'>Recent transactions</p>
-          {transactions?.length > 0 && transactions.map((transaction) => (
-            <div className="border-b border-neutral-500 mb-2 pb-2" key={transaction.id}>
-              <div className="transaction p-4 flex items-center justify-between bg-neutral-800 rounded ">
-                <p className='mr-8'>{transaction.name}</p>
-                <p className={`${transaction.transactionType === 'INCOME' ? 'text-green-500' : 'text-red-500'}`}>₹{transaction.amount}</p>
+          <div className="h-[30rem] overflow-y-scroll pr-2">
+            {transactions?.length > 0 ? transactions.map((transaction) => (
+              <div className="border-b border-neutral-500 mb-2 pb-2" key={transaction.id}>
+                <div className="transaction p-4 flex items-center justify-between bg-neutral-800 rounded ">
+                  <p className='mr-8'>{transaction.name}</p>
+                  <p className={`${transaction.transactionType === 'INCOME' ? 'text-green-500' : 'text-red-500'}`}>₹{transaction.amount}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            )) : (
+              <Spinner />
+            )}
+          </div>
         </div>
       </div>
     </div>

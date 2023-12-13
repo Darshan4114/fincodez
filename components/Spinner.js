@@ -1,12 +1,11 @@
-import styl from "@/styles/css/Spinner.module.css";
-export default function Spinner(props) {
-  let place = "";
-  if (props.place === "button") {
-    place = "placeButton";
-  }
+import React from "react";
+
+const Spinner = () => {
   return (
-    <div className={`${styl.container} ${place}`}>
-      <div class={styl.loader}>Loading...</div>
+    <div className="flex justify-center items-center h-screen">
+      <div className="animate-spin rounded-full border-t-4 border-primary border-solid h-16 w-16"></div>
     </div>
   );
-}
+};
+
+export default Spinner;
