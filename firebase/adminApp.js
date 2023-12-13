@@ -2,7 +2,7 @@ var firebaseAdmin = require("firebase-admin");
 const { getFirestore } = require("firebase-admin/firestore");
 const { getAuth } = require("firebase-admin/auth");
 
-var serviceAccount = require("../public/laCasaServiceAccountKey.json");
+var serviceAccount = require("../public/firebase-service-acc-key.json");
 
 if (!firebaseAdmin.apps.length) {
   firebaseAdmin.initializeApp({
