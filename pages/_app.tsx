@@ -9,10 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 //@ts-ignore
 import nProgress from "nprogress";
 import dynamic from "next/dynamic";
-
-const Nav = dynamic(() => import("../components/Nav"));
 const AuthProvider = dynamic(() => import("../components/AuthProvider"));
-// import LocationContext from "../components/LocationContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -45,15 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <AuthProvider>
-        {/* <LocationContext.Provider
-          value={{ location, locationList, setLocation, setLocationList }}
-        > */}
-        <div style={{ position: "relative" }}>
-          {/* <Nav tabValue={tabValue} setTabValue={redirectAndSetTabValue} /> */}
           <Component {...pageProps} tabValue={tabValue} />
-        </div>
-        {/* </LocationContext.Provider> */}
-
         <ToastContainer
           position="bottom-center"
           autoClose={1000}
