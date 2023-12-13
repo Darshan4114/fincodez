@@ -24,11 +24,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     setTabValue(router.asPath);
   }, [router.asPath]);
-  useEffect(()=>{(async () => {
-    router.events.on("routeChangeStart", () => nProgress.start());
-    router.events.on("routeChangeComplete", () => nProgress.done());
-    router.events.on("routeChangeError", () => nProgress.done());
-  })}, []);
+  useEffect(() => {
+    (async () => {
+      router.events.on("routeChangeStart", () => nProgress.start());
+      router.events.on("routeChangeComplete", () => nProgress.done());
+      router.events.on("routeChangeError", () => nProgress.done());
+    })
+  }, []);
 
   return (
     <>
@@ -40,9 +42,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
       </Head>
       <AuthProvider>
-          <Component {...pageProps} tabValue={tabValue} />
+        <Component {...pageProps} tabValue={tabValue} />
         <ToastContainer
           position="bottom-center"
           autoClose={1000}

@@ -5,5 +5,5 @@ export default function MainPage() {
     const router = useRouter();
     useEffect(() => {
         router.push('/dashboard');
-    }, [])
+    }, [router])
 }
