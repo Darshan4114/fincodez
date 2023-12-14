@@ -38,3 +38,7 @@ Harshkumar Pasi - https://github.com/harshkumar27
 Om Darekar
 Omkar Kulkarni
 Darshan Dhabale - https://github.com/darshan4114
+
+
+## Deployed version
+https://fincodez.vercel.app/
