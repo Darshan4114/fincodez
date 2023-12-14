@@ -1,4 +1,5 @@
 import LightLogo from "@/components/LightLogo";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -26,14 +27,17 @@ export default function MainPage() {
       </header>
       <main className="main-container">
         <section className="hero-section">
-          <div className="desc">
-
-            <h1 className="hero-title">India&apos;s number 1 finance tracker application.</h1>
-            <h1 className="hero-title">Watch video</h1>
-            <p className="hero-description">A simple and intuitive app to help you manage your finances.</p>
-          </div>
-          <div className="hero-image-container">
-            <img src="img/fincodez.png" alt="Hero image" className="hero-image" />
+          <div className="desc flex gap-8">
+            <div className="">
+              <h1 className="hero-title">India&apos;s number 1 finance tracker application.</h1>
+              <p className="hero-description mb-16">A simple and intuitive app to help you manage your finances.</p>
+              <Link href='https://youtu.be/BQQEkx7zuE8' target='_blank' className='bg-primary text-white text-3xl font-bold mb-16 rounded-lg p-3 mt-3 w-96'>
+                Watch Video
+              </Link>
+            </div>
+            <div className="hero-image-container">
+              <img src="img/fincodez.png" alt="Hero image" className="hero-image" />
+            </div>
           </div>
         </section>
         <section className="features-section">
