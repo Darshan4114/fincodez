@@ -72,7 +72,7 @@ export default function MainPage() {
         <section className="testimonials-section">
           <h2 className="testimonials-title">What people are saying</h2>
           <div className="testimonial-card">
-            <p className="testimonial-text">&quot;EXTracker has helped me save so much money! I love the analytics feature.&quot;</p>
+            <p className="testimonial-text">&quot;Fincodez has helped me save so much money! I love the analytics feature.&quot;</p>
             <span className="testimonial-author">- Jane Doe</span>
           </div>
           <div className="testimonial-card">
@@ -83,7 +83,7 @@ export default function MainPage() {
       </main>
       <footer className="footer-container">
         <div className="copyright">
-          &copy; 2023 EXTracker
+          &copy; 2023 Fincodez
         </div>
         <div className="social-media">
           <a href="#" className="social-media-icon"><i className="fa fa-facebook"></i></a>
