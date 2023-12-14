@@ -4,7 +4,7 @@
 
 ## Overview
 
-Welcome to FinCodez! This fintech platform is designed to revolutionize the way individuals manage their finances, providing [a brief description of the main purpose and goals of your startup].
+Welcome to FinCodez! This fintech platform is designed to revolutionize the way individuals manage their finances, providing users with a platform to manage their finances and investments.
 
 ## Features
 

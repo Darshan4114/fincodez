@@ -251,20 +251,20 @@ a {
   font-size: 3rem;
   font-weight: bold;
   margin: 0.5rem 0;
-  color: #fff;
+  color: black;
 }
 
 .hero-description {
   font-size: 1.5rem;
   margin: 1rem 0;
-  color: #fff;
+  color: black;
   opacity: 0.8;
 }
 
 .balance {
   font-size: 2rem;
   font-weight: bold;
-  color: #fff;
+  color: black;
   margin: 1rem 0;
 }
 
@@ -328,8 +328,9 @@ a {
 }
 
 .hero-image{
-  width: 400px;
-  height: 250px;
+  width: 700px;
+  height: 450px;
+  border-radius: 1rem;
 }
 
 .desc{
