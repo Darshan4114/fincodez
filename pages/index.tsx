@@ -21,8 +21,8 @@ export default function MainPage() {
           </ul>
         </nav>
         <div className="buttons-container">
-          <button className="button login-button">Log In</button>
-          <button className="button register-button">Register</button>
+          <Link className="button login-button" href='/login'>Log In</Link>
+          <Link className="button register-button" href='/register'>Register</Link>
         </div>
       </header>
       <main className="main-container">
