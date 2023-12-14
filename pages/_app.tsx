@@ -42,20 +42,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <meta name="description" content="" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <title>Start | Landing Page for Startup and SaaS Business</title>
-        <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
-        <link rel="stylesheet" href="/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/LineIcons.css" />
-        <link rel="stylesheet" href="/css/magnific-popup.css" />
-        <link rel="stylesheet" href="/css/default.css" />
-        <link rel="stylesheet" href="/css/style.css" />
       </Head>
       <AuthProvider>
         <Component {...pageProps} tabValue={tabValue} />

@@ -1,6 +1,27 @@
+import LightLogo from "@/components/LightLogo";
+import Logo from "@/components/Logo";
+import Head from "next/head";
+import Link from "next/link";
+
 export default function Home() {
     return (
         <>
+            <Head>
+                <meta charSet="utf-8" />
+                <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+                <meta name="description" content="" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+                />
+                <title>Start | Landing Page for Startup and SaaS Business</title>
+                <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+                <link rel="stylesheet" href="/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="/css/LineIcons.css" />
+                <link rel="stylesheet" href="/css/magnific-popup.css" />
+                <link rel="stylesheet" href="/css/default.css" />
+                <link rel="stylesheet" href="/css/style.css" />
+            </Head>
             <header className="header-area">
                 <div className="navgition navgition-transparent">
                     <div className="container">
@@ -8,7 +29,7 @@ export default function Home() {
                             <div className="col-lg-12">
                                 <nav className="navbar navbar-expand-lg">
                                     <a className="navbar-brand" href="#">
-                                        <img src="/images/logo.svg" alt="Logo" />
+                                        <LightLogo />
                                     </a>
                                     <button
                                         className="navbar-toggler"
@@ -51,7 +72,10 @@ export default function Home() {
                                         </ul>
                                     </div>
                                     <div className="navbar-social d-none d-sm-flex align-items-center">
-                                        <span>FOLLOW US</span>
+                                        <div className="flex gap-4 mx-8">
+                                            <Link href='/register'>REGISTER</Link>
+                                            <Link href='/login'>LOGIN</Link>
+                                        </div>
                                         <ul>
                                             <li>
                                                 <a href="#">
@@ -83,15 +107,15 @@ export default function Home() {
                 <div
                     id="home"
                     className="header-hero bg_cover"
-                    style={{ backgroundImage: "url(images/header-bg.jpg)" }}
+                    style={{ backgroundImage: "url(/images/header-bg.jpg)" }}
                 >
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-xl-8 col-lg-10">
+                                {/* <Image src='' width='' /> */}
                                 <div className="header-content text-center">
                                     <h3 className="header-title">
-                                        Thanks for using free lite version of Start Landing Page
-                                    </h3>
+                                    "Empowering Your Financial Future: Navigate, Innovate, Prosper with FinCodez"</h3>
                                     <p className="text">
                                         Please, purchase the premium version just for $9 - if you would
                                         like to remove footer credits and get all features,
@@ -120,7 +144,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                    <div className="header-shape">
+                    <div className="header-shape blur-sm">
                         <img src="images/header-shape.svg" alt="shape" />
                     </div>
                 </div>
@@ -211,7 +235,7 @@ export default function Home() {
                 {/* conteiner */}
                 <div className="services-image d-lg-flex align-items-center">
                     <div className="image">
-                        <img src="images/services.png" alt="Services" />
+                        <img src="/images/services.png" alt="Services" />
                     </div>
                 </div>{" "}
                 {/* services image */}
@@ -320,7 +344,7 @@ export default function Home() {
                         <div className="col-lg-4 col-md-7 col-sm-9">
                             <div className="single-pricing pro mt-40">
                                 <div className="pricing-baloon">
-                                    <img src="images/baloon.svg" alt="baloon" />
+                                    <img src="/images/baloon.svg" alt="baloon" />
                                 </div>
                                 <div className="pricing-header">
                                     <h5 className="sub-title">Pro</h5>
@@ -406,7 +430,7 @@ export default function Home() {
                         <div className="col-lg-4 col-md-7 col-sm-9">
                             <div className="single-pricing enterprise mt-40">
                                 <div className="pricing-flower">
-                                    <img src="images/flower.svg" alt="flower" />
+                                    <img src="/images/flower.svg" alt="flower" />
                                 </div>
                                 <div className="pricing-header text-right">
                                     <h5 className="sub-title">Enterprise</h5>
@@ -498,7 +522,7 @@ export default function Home() {
             {/*====== CALL TO ACTION PART START ======*/}
             <section id="call-to-action" className="call-to-action">
                 <div className="call-action-image">
-                    <img src="images/call-to-action.png" alt="call-to-action" />
+                    <img src="/images/call-to-action.png" alt="call-to-action" />
                 </div>
                 <div className="container-fluid">
                     <div className="row justify-content-end">
@@ -544,7 +568,7 @@ export default function Home() {
                             <div className="contact-form">
                                 <form
                                     id="contact-form"
-                                    action="contact.php"
+                                    action="/contact.php"
                                     method="post"
                                     data-toggle="validator"
                                 >
@@ -644,7 +668,7 @@ export default function Home() {
                                 <div className="footer-logo-support d-md-flex align-items-end justify-content-between">
                                     <div className="footer-logo d-flex align-items-end">
                                         <a className="mt-30" href="index.html">
-                                            <img src="images/logo.svg" alt="Logo" />
+                                            <img src="/images/logo.svg" alt="Logo" />
                                         </a>
                                         <ul className="social mt-30">
                                             <li>
