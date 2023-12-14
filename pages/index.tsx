@@ -115,7 +115,7 @@ export default function Home() {
                                 {/* <Image src='' width='' /> */}
                                 <div className="header-content text-center">
                                     <h3 className="header-title">
-                                    "Empowering Your Financial Future: Navigate, Innovate, Prosper with FinCodez"</h3>
+                                    &quot;Empowering Your Financial Future: Navigate, Innovate, Prosper with FinCodez&quot;</h3>
                                     <p className="text">
                                         Please, purchase the premium version just for $9 - if you would
                                         like to remove footer credits and get all features,
