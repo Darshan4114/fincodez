@@ -16,9 +16,9 @@ export const getServerSideProps = async (ctx: GetServerSideProps) => {
     return { ...res, props: { ...res.props } };
 };
 
-enum InvestmentType{
-    LUMPSUM='LUMPSUM',
-    MONTHLY='MONTHLY',
+enum InvestmentType {
+    LUMPSUM = 'LUMPSUM',
+    MONTHLY = 'MONTHLY',
 
 }
 
@@ -70,8 +70,29 @@ export default function GoalTrackerPage({ userId }: { userId: string }) {
         setLoading(false);
     };
 
+    function calculateSIPInterestRate(finalValue: number, numberOfYears: number, monthlyContributions: number) {
+        const totalMonths = numberOfYears * 12;
+
+        const numerator = finalValue * Math.pow(1 + (1 / totalMonths), totalMonths);
+        const denominator = monthlyContributions * ((Math.pow(1 + (1 / totalMonths), totalMonths) - 1) / (1 / totalMonths));
+
+        const interestRate = (numerator / denominator - 1) * 100;
+
+        return interestRate.toFixed(2);
+    }
+
+    function calculateLumpSumInterestRate(finalValue: number, numberOfYears: number, lumpSumAmount: number) {
+        const interestRate = (Math.pow(finalValue / lumpSumAmount, 1 / numberOfYears) - 1) * 100;
+
+        return interestRate.toFixed(2);
+    }
+
     const handleCalculate = () => {
-        setInvestmentAmount(10000);
+        if (investmentType === InvestmentType.MONTHLY) {
+            setGrowth(parseInt(calculateSIPInterestRate(amount, timeline, investmentAmount)));
+        } else {
+            setGrowth(parseInt(calculateLumpSumInterestRate(amount, timeline, investmentAmount)));
+        }
     };
 
     const handleAddToGoals = async () => {
@@ -110,8 +131,8 @@ export default function GoalTrackerPage({ userId }: { userId: string }) {
                         <div className="">
                             <div className="flex flex-col gap-4">
                                 <div className="flex grid grid-cols-2 border border-white rounded mb-4">
-                                    <button className={`hover:bg-neutral-500 p-3 ${investmentType === InvestmentType.LUMPSUM && 'bg-neutral-600'}`} onClick={()=>{setInvestmentType(InvestmentType.LUMPSUM)}}>Lumpsum amount</button>
-                                    <button className={`hover:bg-neutral-500 p-3 ${investmentType === InvestmentType.MONTHLY && 'bg-neutral-600'}`} onClick={()=>{setInvestmentType(InvestmentType.MONTHLY)}}>Monthly investment</button>
+                                    <button className={`hover:bg-neutral-500 p-3 ${investmentType === InvestmentType.LUMPSUM && 'bg-neutral-600'}`} onClick={() => { setInvestmentType(InvestmentType.LUMPSUM) }}>Lumpsum amount</button>
+                                    <button className={`hover:bg-neutral-500 p-3 ${investmentType === InvestmentType.MONTHLY && 'bg-neutral-600'}`} onClick={() => { setInvestmentType(InvestmentType.MONTHLY) }}>Monthly investment</button>
                                 </div>
                                 <DarkModeTextField
                                     label="What is the required amount? e.g. 500000, 1000000"
@@ -137,13 +158,7 @@ export default function GoalTrackerPage({ userId }: { userId: string }) {
                                 </button>
                                 {investmentAmount > 0 && (
                                     <>
-                                        <p className='bg-white rounded text-gray-800 p-2'>Required monthly investment amount: ₹ {investmentAmount}</p>
-                                        <div className="flex gapd-2">
-                                            <p>Add this to MY GOALS?  &nbsp;</p>
-                                            <button className="text-left underline text-white" onClick={handleAddToGoals}> Yes </button>
-                                            <p>&nbsp;/&nbsp;</p>
-                                            <button className="text-left underline text-white" onClick={resetForm}> No</button>
-                                        </div>
+                                        <p className='bg-white rounded text-gray-800 p-2'>Required yearly growth is: {growth}%</p>
                                     </>
                                 )}
                             </div>

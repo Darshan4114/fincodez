@@ -66,8 +66,24 @@ export default function GoalTrackerPage({ userId }: { userId: string }) {
         setLoading(false);
     };
 
+    function calculateSIP(finalValue: number, annualInterestRate: number, numberOfYears: number) {
+        const monthlyInterestRate = annualInterestRate / 12 / 100;
+        const totalMonths = numberOfYears * 12;
+
+        const numerator = finalValue * monthlyInterestRate;
+        
+        const denominator = Math.pow(1 + monthlyInterestRate, totalMonths) - 1;
+
+        const sipAmount = numerator / denominator;
+
+        return sipAmount.toFixed(2);
+    }
+
     const handleCalculate = () => {
-        setInvestmentAmount(10000);
+        console.log('in', amount, growth, timeline)
+        const sipAmount = calculateSIP(amount, growth, timeline);
+        console.log('sips', sipAmount)
+        setInvestmentAmount(parseInt(sipAmount));
     };
 
     const handleAddToGoals = async () => {
@@ -109,6 +125,7 @@ export default function GoalTrackerPage({ userId }: { userId: string }) {
                                     label="What's your goal? e.g. Buying a car"
                                     name="goalName"
                                     value={goalName}
+                                    type='text'
                                     onChange={handleGoalChange}
                                 />
                                 <DarkModeTextField
@@ -131,12 +148,16 @@ export default function GoalTrackerPage({ userId }: { userId: string }) {
                                 />
 
                                 <button onClick={handleCalculate} className="text-white bg-green-500 text-xl font-bold rounded p-2" disabled={loading}>
-                                    Calculate
+                                    {loading ? (
+                                        <Spinner />
+                                    ) : (
+                                        <p>Calculate</p>
+                                    )}
                                 </button>
                                 {investmentAmount > 0 && (
                                     <>
                                         <p className='bg-white rounded text-gray-800 p-2'>Required monthly investment amount: ₹ {investmentAmount}</p>
-                                        <div className="flex gapd-2">
+                                        <div className="flex gap-2">
                                             <p>Add this to MY GOALS?  &nbsp;</p>
                                             <button className="text-left underline text-white" onClick={handleAddToGoals}> Yes </button>
                                             <p>&nbsp;/&nbsp;</p>

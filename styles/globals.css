@@ -251,20 +251,20 @@ a {
   font-size: 3rem;
   font-weight: bold;
   margin: 0.5rem 0;
-  color: black;
+  color: #fff;
 }
 
 .hero-description {
   font-size: 1.5rem;
   margin: 1rem 0;
-  color: black;
+  color: #fff;
   opacity: 0.8;
 }
 
 .balance {
   font-size: 2rem;
   font-weight: bold;
-  color: black;
+  color: #fff;
   margin: 1rem 0;
 }
 

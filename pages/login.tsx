@@ -27,7 +27,7 @@ import InputLabel from "@mui/material/InputLabel";
 
 import app from "../firebase/clientApp";
 import { toastOptions } from "../components/constants";
-import Logo from "../components/Logo";
+import LightLogo from "../components/LightLogo";
 import cGetDoc from "@/firebase/crud-lite/cGetDoc";
 import cUpdateDoc from "@/firebase/crud-lite/cUpdateDoc";
 import cAddUser from "@/firebase/crud-lite/cAddUser";
@@ -127,6 +127,7 @@ export default function Login({ loginRedirectUrl, ...props }: any) {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
     const signInWithGoogle = () => {
         signInWithPopup(auth, googleProvider)
             .then(() => {
@@ -134,7 +135,7 @@ export default function Login({ loginRedirectUrl, ...props }: any) {
                 if (loginRedirectUrl) {
                     router.push(loginRedirectUrl);
                 } else {
-                    router.push("/");
+                    router.push("/dashboard");
                 }
             })
             .catch((error) => {
@@ -196,11 +197,6 @@ export default function Login({ loginRedirectUrl, ...props }: any) {
 
                 const email = err?.customData?.email;
                 const credential = OAuthProvider.credentialFromError(e);
-                // console.log("err = ", err);
-                // console.log("err = ", email);
-                // console.log("err = ", oauthAccessToken);
-                // console.log("err = ", err.code);
-                // console.log("provider data", auth.currentUser?.providerData);
                 if (
                     email &&
                     credential &&
@@ -233,7 +229,7 @@ export default function Login({ loginRedirectUrl, ...props }: any) {
                 if (loginRedirectUrl) {
                     router.push(loginRedirectUrl);
                 } else {
-                    router.push("/");
+                    router.push("/dashboard");
                 }
             });
     }
@@ -269,7 +265,7 @@ export default function Login({ loginRedirectUrl, ...props }: any) {
                 if (loginRedirectUrl) {
                     router.push(loginRedirectUrl);
                 } else {
-                    router.push("/");
+                    router.push("/dashboard");
                 }
             })
             .catch((error) => {
@@ -289,7 +285,7 @@ export default function Login({ loginRedirectUrl, ...props }: any) {
     return (
         <Container>
             <div className="logo">
-                <Logo />
+                <LightLogo />
             </div>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <h1>Login</h1>
