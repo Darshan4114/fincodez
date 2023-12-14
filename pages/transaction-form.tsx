@@ -74,6 +74,7 @@ export default function TransactionForm() {
                         <DarkModeTextField
                             label="Name"
                             name="name"
+                            type='text'
                             value={name}
                             onChange={handleNameChange}
                         />
